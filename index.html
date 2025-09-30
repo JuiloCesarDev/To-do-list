@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="style.css" />
+
+    ;
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <button class="button" onclick="abrirLogin(event)">Login</button>
+        <li></li>
+      </nav>
+    </header>
+    <div class="container">
+      <h1 id="titulo"></h1>
+      <p>Adicione suas tarefas!</p>
+      <input type="text" placeholder="Escreva sua tarefa..." id="inputTarefa" />
+      <button
+        onclick="adicionarTarefa()"
+        class="button-82-pushable"
+        role="button"
+      >
+        <span class="button-82-shadow"></span>
+        <span class="button-82-edge"></span>
+        <span class="button-82-front text"> Adicionar </span>
+      </button>
+
+      <p id="mensagem"></p>
+      <ul id="listaTarefas"></ul>
+    </div>
+    <div class="loginAparece" id="loginAparece" style="display: none">
+      <button class="fecharLogin" onclick="abrirLogin(event)">✖</button>
+      <h2>Login</h2>
+      <input type="text" placeholder="Usuário" id="usuario" />
+      <input type="password" placeholder="Senha" id="senha" />
+      <button onclick="fazerLogin()" class="button-82-pushable" role="button">
+        <span class="button-82-shadow"></span>
+        <span class="button-82-edge"></span>
+        <span class="button-82-front text"> Entrar </span>
+      </button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
