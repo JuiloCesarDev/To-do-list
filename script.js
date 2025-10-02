@@ -1,6 +1,3 @@
-// ========================
-// Digitação do título
-// ========================
 const titulo = document.getElementById("titulo");
 const texto = "📋 Lista de Tarefas";
 let i = 0;
@@ -21,20 +18,13 @@ function digitar() {
 }
 digitar();
 
-// ========================
-// Variáveis globais
-// ========================
 let listaTarefas = document.getElementById("listaTarefas");
 let listaLixeira = document.getElementById("listaLixeira");
 let msg = document.getElementById("mensagem");
 
-// Carregar do localStorage ou começar vazio
 let Tarefas = JSON.parse(localStorage.getItem("List_tarefas")) || [];
 let Lixeira = JSON.parse(localStorage.getItem("List_lixeira")) || [];
 
-// ========================
-// Funções de salvar/carregar
-// ========================
 function salvarTarefas() {
   localStorage.setItem("List_tarefas", JSON.stringify(Tarefas));
   localStorage.setItem("List_lixeira", JSON.stringify(Lixeira));
@@ -65,7 +55,6 @@ function renderizarTarefas() {
     btnExcluir.style.marginLeft = "20px";
     btnExcluir.classList.add("removerTarefa");
     btnExcluir.onclick = () => {
-      // Mover para lixeira
       Lixeira.push(Tarefas[index]);
       Tarefas.splice(index, 1);
       salvarTarefas();
@@ -90,7 +79,6 @@ function renderizarLixeira() {
     span.textContent = tarefa.texto;
     if (tarefa.feito) span.style.textDecoration = "line-through";
 
-    // Restaurar
     let btnRestaurar = document.createElement("button");
     btnRestaurar.textContent = "♻️ Restaurar";
     btnRestaurar.classList.add("btn-lixeira", "btn-restaurar");
@@ -102,7 +90,6 @@ function renderizarLixeira() {
       renderizarLixeira();
     };
 
-    // Excluir permanentemente
     let btnExcluir = document.createElement("button");
     btnExcluir.textContent = "🗑️ Excluir";
     btnExcluir.classList.add("btn-lixeira");
@@ -119,9 +106,6 @@ function renderizarLixeira() {
   });
 }
 
-// ========================
-// Adicionar tarefa
-// ========================
 function adicionarTarefa() {
   let inputTarefa = document.getElementById("inputTarefa");
   let tarefa = inputTarefa.value.trim();
@@ -141,16 +125,12 @@ function adicionarTarefa() {
   inputTarefa.value = "";
 }
 
-// Enter também adiciona
 document.getElementById("inputTarefa").addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     adicionarTarefa();
   }
 });
 
-// ========================
-// Abrir/fechar lixeira
-// ========================
 function abrirLixeira(event) {
   event.preventDefault();
   let lixeiraBox = document.getElementById("lixeiraAparece");
@@ -158,8 +138,5 @@ function abrirLixeira(event) {
     lixeiraBox.style.display === "none" ? "block" : "none";
 }
 
-// ========================
-// Carregar listas ao abrir a página
-// ========================
 renderizarTarefas();
 renderizarLixeira();
