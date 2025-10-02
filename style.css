@@ -4,7 +4,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  overflow-y: auto;
+  padding-left: 10px;
+  padding-right: 10px;
   margin: 0;
   padding: 0;
   background: linear-gradient(
@@ -16,6 +19,13 @@ body {
     #ffbb94
   );
 }
+#listaTarefas {
+  max-height: 200px; /* altura máxima da lista */
+  overflow-y: auto; /* cria scroll só dentro dela */
+
+  scrollbar-color: transparent transparent; /* cor da barra de rolagem */
+}
+
 .container {
   text-align: center;
   background-color: transparent;
@@ -28,6 +38,7 @@ body {
   background: rgba(255, 255, 255, 0.1);
   padding: 20px;
 }
+
 h1 {
   color: #fff3e1;
 }
@@ -37,6 +48,7 @@ p {
 }
 button {
   margin-top: 10px;
+  cursor: pointer;
 }
 
 ul {
@@ -51,6 +63,9 @@ ul li {
   margin: 10px 0;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* Estilo para o campo de entrada */
@@ -73,7 +88,7 @@ input[type="text"]:focus {
   box-shadow: inset 0 2px 4px rgba(96, 4, 26, 0.3);
 }
 
-/* CSS */
+/* Botão estilizado */
 .button-82-pushable {
   position: relative;
   border: none;
@@ -166,19 +181,7 @@ input[type="text"]:focus {
   outline: none;
 }
 
-header .icon {
-  width: 40px;
-  height: 50px;
-  fill: #fff3e1;
-  margin-bottom: 10px;
-  position: top;
-  cursor: pointer;
-  position: fixed;
-  top: 10px;
-  left: 30px;
-  font-size: 28px;
-  z-index: 1000; /* garante que fique na frente */
-}
+/* Header */
 .header {
   position: fixed;
   top: 0;
@@ -191,65 +194,107 @@ header .icon {
   align-items: center;
   padding: 0 20px;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  z-index: 999; /* garante que fique na frente */
+  z-index: 999;
 }
 
 .nav button {
   margin-left: auto;
-  display: flex;
-  gap: 20px;
   padding: 8px 16px;
   margin-right: 40px;
   border-radius: 8px;
-
-  list-style: none;
-
-  align-self: center;
   border: none;
 }
 
-.loginAparece {
+/* ====== LIXEIRA ====== */
+.buttonLixeira {
+  background: hsl(345deg 100% 47%);
+  color: #fff;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.buttonLixeira:hover {
+  background: hsl(0, 80%, 30%);
+}
+
+.lixeiraAparece {
   position: fixed;
   top: 0;
-  right: 0; /* gruda no lado direito */
-  height: 100%; /* ocupa a altura da tela */
-  width: 300px; /* largura padrão */
-  max-width: 80%; /* em telas pequenas ocupa até 80% */
-
-  background-color: rgba(255, 255, 255, 0.95);
+  right: 0;
+  height: 100%;
+  width: 300px;
+  max-width: 80%;
+  background-color: rgba(192, 52, 87, 0.95);
   padding: 20px;
-  border-radius: 8px 0 0 8px; /* arredonda só o lado esquerdo */
+  border-radius: 8px 0 0 8px;
   box-shadow: -4px 0 10px rgba(0, 0, 0, 0.4);
   z-index: 1001;
-  overflow-y: auto; /* se o conteúdo crescer, scrolla */
+  overflow-y: auto;
   transition: transform 0.3s ease-in-out;
 }
 
-.loginAparece h2 {
-  color: #2c1710;
-  display: flex;
-  justify-content: center;
+.lixeiraAparece h2 {
+  color: white;
+  text-align: center;
 }
-.loginAparece input {
-  width: 90%;
-  margin-bottom: 10px;
+
+.lixeiraAparece ul li {
+  background: #ffe6e6;
+  color: #600;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.lixeiraAparece button {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  border-radius: 5px;
   border: none;
+  cursor: pointer;
 }
 
-.loginAparece span {
-  display: flex;
-  justify-content: center;
-}
-
-.fecharLogin {
+.fecharLixeira {
   position: absolute;
-  top: -3px;
-  left: 10px;
+  top: 10px;
+  right: 10px;
   border: none;
   background: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #333;
+  color: white;
+}
+
+.btn-lixeira {
+  background: hsla(350, 80%, 40%, 0.856);
+  color: #fff;
+  font-weight: bold;
+  transition: background 0.3s;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.btn-restaurar {
+  background: hsla(145, 80%, 40%, 0.856);
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  margin-right: 15px;
+}
+.removerTarefa {
+  background: hsl(345deg 100% 47%);
+  height: 20px;
+  width: 20px;
+  padding: 10px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  color: white;
+  border: hsl(345, 78%, 31%) solid 1px;
 }
