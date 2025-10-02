@@ -13,7 +13,7 @@ Um projeto de lista de tarefas simples, feito em **HTML, CSS e JavaScript puro**
 - Excluir permanentemente tarefas da lixeira.
 - Persistência no **localStorage**, mantendo tarefas salvas mesmo após fechar o navegador.
 - Animação de digitação no título da página.
-- Layout responsivo e moderno com efeito de vidro.
+- Layout responsivo 
 
 ---
 
